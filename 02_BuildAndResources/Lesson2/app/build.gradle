@@ -21,22 +21,34 @@ android {
 
         debug {
             applicationIdSuffix ".debug"
+            manifestPlaceholders = [app_name: "DebugSkillbox"]
         }
 
         qa {
             initWith debug
             applicationIdSuffix ".test"
+            manifestPlaceholders = [app_name: "QaSkillbox"]
         }
 
         release {
             signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [app_name: "ReleaseSkillbox"]
         }
-
-
     }
 
+    flavorDimensions "type"
+
+    productFlavors {
+        free {
+            dimension "type"
+        }
+
+        paid {
+            dimension "type"
+        }
+    }
 }
 
 dependencies {

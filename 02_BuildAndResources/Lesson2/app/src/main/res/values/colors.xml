@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorBackgroundPaid">#006002</color>
     <color name="colorBackgroundFree">#253C60</color>
+    <color name="colorLand">#3F0C0D</color>
 </resources>

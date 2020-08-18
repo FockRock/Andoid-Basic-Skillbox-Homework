@@ -29,6 +29,7 @@ fun solveEquation (a: Int, b: Int, c: Int): Float {
         }
         else -> {
             x1 = (-1f * b) / (2f * a)
+            println("X = $x1")
             x2 = 0f
         }
     }

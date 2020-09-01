@@ -16,16 +16,12 @@ fun solveEquation (a: Int, b: Int, c: Int): Float {
     val x2: Any
 
     when {
-        d > 0 -> {
+        d >= 0 -> {
             x1 = ((-1 * b) + sqrt(d)) / (2 * a)     //расчет первого корня
             println("X1 = $x1")
 
             x2 = ((-1 * b) - sqrt(d)) / (2 * a)     //расчет второго корня
             println("X2 = $x2")
-        }
-        d < 0 -> {
-            x1 = 0f
-            x2 = 0f
         }
         else -> {
             x1 = (-1f * b) / (2f * a)

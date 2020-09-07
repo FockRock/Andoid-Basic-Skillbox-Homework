@@ -2,7 +2,7 @@ package com.skillbox.a03_loops_recursion_nullabletypes
 
 fun main() {
     print("Введите число: ")
-    var n: Int = readLine()?.toIntOrNull() ?: return
+    var n: Int = readLine()?.toIntOrNull()?: return
 
     if (n > 0) {
         println("Введите еще $n чисел.")
@@ -12,7 +12,7 @@ fun main() {
     var numbers = 0
 
     while (n > 0) {
-        val currentNumber = readLine()?.toIntOrNull() ?: continue
+        val currentNumber = readLine()?.toIntOrNull()?: continue
         sum += currentNumber
         n--
         if (currentNumber > 0) {
@@ -23,7 +23,7 @@ fun main() {
     println("Сумма чисел $sum")
 
     print("Введите число для вычисления НОД: ")
-    val x: Int = readLine()?.toIntOrNull() ?: return
+    val x: Int = readLine()?.toIntOrNull()?: return
 
     val nod = calculateNod(x, sum)
     print("НОД этого числа и суммы других чисел равен $nod")

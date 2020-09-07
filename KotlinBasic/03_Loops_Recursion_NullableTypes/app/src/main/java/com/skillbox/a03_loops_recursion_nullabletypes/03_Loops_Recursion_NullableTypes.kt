@@ -29,7 +29,6 @@ fun main() {
     print("НОД этого числа и суммы других чисел равен $nod")
 }
 
-
 tailrec fun calculateNod(a: Int, b: Int): Int {
     return if (b == 0) a else calculateNod(b, a % b)
 }

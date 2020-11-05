@@ -7,5 +7,5 @@ class Animal constructor(
         val maxAge: Int,
         val name: String
 ){
-
+    val int: Int = 1
 }

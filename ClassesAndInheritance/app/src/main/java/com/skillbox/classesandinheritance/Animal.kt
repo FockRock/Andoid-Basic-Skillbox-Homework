@@ -4,8 +4,14 @@ class Animal constructor(
         var energy: Int,
         var weight: Int,
         val maxAge: Int,
-        val name: String
+        val name: String,
+        var age: Int = 0
 ){
-    var age: Int = 0
-    val int: Int = 1
+    val isTooOld: Boolean {if age >= maxAge true else false}
+
+    public fun sleep(){
+        energy =+ 5
+        age =+ 1
+        println("$name sleeping.")
+    }
 }

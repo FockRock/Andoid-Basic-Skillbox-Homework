@@ -1,12 +1,12 @@
 package com.skillbox.classesandinheritance
 
 fun main() {
-    var tiger = Animal(
-            12,30, 3, "Tiger"
-    )
-    println("${tiger.name} age is now ${tiger.age}.")
-    tiger.sleep()
-    tiger.eat()
-    tiger.move()
-    println("${tiger.name} age is now ${tiger.age}.")
+    var animal = Animal(12,30, 10, "Tiger")
+
+    while (!animal.isTooOld) {
+        animal.sleep()
+        animal.eat()
+        animal.move()
+        }
+        animal.makeChild()
 }

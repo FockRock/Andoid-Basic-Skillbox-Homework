@@ -3,30 +3,42 @@ package com.skillbox.classesandinheritance
 import kotlin.random.Random
 
 class Animal constructor(
-        var energy: Int,
-        var weight: Int,
-        private val maxAge: Int,
-        val name: String,
-        var age: Int = 0
-){
-    val isTooOld: Boolean
-        get() =
-            if (age >= maxAge) true else false
+        val e: Int,
+        val w: Int,
+        val mA: Int,
+        val n: String
+){  var energy = this.e
+        private set
 
+    var weight = this.w
+        private set
+
+    var age: Int = 0
+
+    private val maxAge = this.mA
+
+    val name = this.n
+
+    val isTooOld: Boolean
+        get() {
+            return age >= maxAge
+        }
 
     fun sleep(){
-        if (!isTooOld)
+        if (!isTooOld) {
             energy += 5
             age ++
             println("$name sleeping.")
+        } else return
     }
 
     fun eat() {
-        if (!isTooOld)
+        if (!isTooOld) {
             energy += 3
-            weight ++
+            weight++
             incrementAgeSometimes()
             println("$name eats.")
+        } else return
     }
 
     private fun incrementAgeSometimes() {
@@ -36,10 +48,11 @@ class Animal constructor(
     }
 
     fun move() {
-        if (!isTooOld && energy <= 5 && weight <= 1)
+        if (!isTooOld && energy <= 5 && weight <= 1) {
             energy -= 5
             weight --
             incrementAgeSometimes()
             println("$name moving.")
+        } else return
     }
 }

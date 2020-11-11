@@ -1,14 +1,6 @@
 package com.skillbox.classesandinheritance
 
 fun main() {
-    var animal = Animal(12,30, 10, "Tiger")
-
-    while (!animal.isTooOld) {
-        while (!animal.isTooOld) {
-            animal.sleep()
-            animal.eat()
-            animal.move()
-        }
-        animal = animal.makeChild()
-    }
+    var animal = object : Animal(44,22,23,"ee"){}
+    animal.makeChild()
 }

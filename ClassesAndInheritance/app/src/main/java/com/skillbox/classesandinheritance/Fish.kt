@@ -5,7 +5,7 @@ import kotlin.random.Random
 class Fish constructor(
         energy: Int,
         weight: Int,
-        private val maxAge: Int,
+        override val maxAge: Int,
         name: String
 ): Animal(energy, weight, maxAge, name) {
 

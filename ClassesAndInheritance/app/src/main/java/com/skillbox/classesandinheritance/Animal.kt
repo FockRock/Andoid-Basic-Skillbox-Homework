@@ -2,12 +2,13 @@ package com.skillbox.classesandinheritance
 
 import kotlin.random.Random
 
-open class Animal constructor(
+abstract class Animal constructor(
         energy: Int,
         weight: Int,
-        private val maxAge: Int,
+        maxAge: Int,
         val name: String
-){  var energy = energy
+): AgedAnimal(maxAge) {
+    var energy = energy
         private set
 
     var weight = weight
@@ -53,7 +54,7 @@ open class Animal constructor(
     open fun makeChild(): Animal {
         val newEnergy: Int = Random.nextInt(until = 10) + 1
         val newWeight: Int = Random.nextInt(until = 5) + 1
-        val animal = Animal(newEnergy,newWeight,this.maxAge,this.name)
+        val animal = object : Animal(newEnergy,newWeight, this@Animal.maxAge, this.name) {}
         println("${animal.name} was born. It has ${animal.energy} energy," +
                 "${animal.weight} weight and max age is ${animal.maxAge}.")
         return animal

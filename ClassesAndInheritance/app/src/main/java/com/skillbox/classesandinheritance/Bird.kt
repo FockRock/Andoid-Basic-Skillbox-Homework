@@ -5,13 +5,17 @@ import kotlin.random.Random
 class Bird constructor(
         energy: Int,
         weight: Int,
-        private val maxAge: Int,
+        override val maxAge: Int,
         name: String
-): Animal(energy, weight, maxAge, name) {
+): Animal(energy, weight, maxAge, name), Soundable {
 
     override fun move() {
         super.move()
         println("Bird is flying.")
+    }
+
+    override fun makeSound() {
+        println("PiPiPi!")
     }
 
     override fun makeChild(): Bird {

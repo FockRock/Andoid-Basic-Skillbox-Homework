@@ -5,13 +5,17 @@ import kotlin.random.Random
 class Dog constructor(
         energy: Int,
         weight: Int,
-        private val maxAge: Int,
+        override val maxAge: Int,
         name: String
-): Animal(energy, weight, maxAge, name) {
+): Animal(energy, weight, maxAge, name), Soundable {
 
     override fun move() {
         super.move()
         println("Dog is running.")
+    }
+
+    override fun makeSound() {
+        println("Woof-Woof!")
     }
 
     override fun makeChild(): Dog {

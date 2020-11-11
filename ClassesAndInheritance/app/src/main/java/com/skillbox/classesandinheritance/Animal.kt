@@ -8,10 +8,10 @@ open class Animal constructor(
         maxAge: Int,
         name: String
 ){  var energy = energy
-        private set
+        protected set
 
     var weight = weight
-        private set
+        protected set
 
     var age: Int = 0
 
@@ -39,13 +39,13 @@ open class Animal constructor(
         } else return
     }
 
-    private fun incrementAgeSometimes() {
+    protected fun incrementAgeSometimes() {
         if (Random.nextBoolean()) {
             age++
         }
     }
 
-    fun move() {
+    open fun move() {
         if (!isTooOld && energy >= 5 && weight >= 1) {
             energy -= 5
             weight --

@@ -5,19 +5,15 @@ import kotlin.random.Random
 open class Animal constructor(
         energy: Int,
         weight: Int,
-        maxAge: Int,
-        name: String
+        private val maxAge: Int,
+        val name: String
 ){  var energy = energy
-        protected set
+        private set
 
     var weight = weight
-        protected set
+        private set
 
     var age: Int = 0
-
-    private val maxAge = maxAge
-
-    val name = name
 
     val isTooOld: Boolean
         get() = age >= maxAge
@@ -39,7 +35,7 @@ open class Animal constructor(
         } else return
     }
 
-    protected fun incrementAgeSometimes() {
+    private fun incrementAgeSometimes() {
         if (Random.nextBoolean()) {
             age++
         }
@@ -54,12 +50,12 @@ open class Animal constructor(
         } else return
     }
 
-    fun makeChild(): Animal {
+    open fun makeChild(): Animal {
         val newEnergy: Int = Random.nextInt(until = 10) + 1
         val newWeight: Int = Random.nextInt(until = 5) + 1
         val animal = Animal(newEnergy,newWeight,this.maxAge,this.name)
-        println("${animal.name} was born. It has ${animal.energy} energy, ${animal.weight} weight and " +
-                "max age is ${animal.maxAge}.")
+        println("${animal.name} was born. It has ${animal.energy} energy," +
+                "${animal.weight} weight and max age is ${animal.maxAge}.")
         return animal
     }
 }

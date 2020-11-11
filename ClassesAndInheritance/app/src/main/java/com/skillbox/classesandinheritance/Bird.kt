@@ -1,18 +1,25 @@
 package com.skillbox.classesandinheritance
 
+import kotlin.random.Random
+
 class Bird constructor(
         energy: Int,
         weight: Int,
-        maxAge: Int,
+        private val maxAge: Int,
         name: String
 ): Animal(energy, weight, maxAge, name) {
 
     override fun move() {
-        if (!isTooOld && energy >= 5 && weight >= 1) {
-            energy -= 5
-            weight --
-            incrementAgeSometimes()
-            println("$name flying.")
-        } else return
+        super.move()
+        println("Bird is flying.")
+    }
+
+    override fun makeChild(): Bird {
+        val newEnergy: Int = Random.nextInt(until = 10) + 1
+        val newWeight: Int = Random.nextInt(until = 5) + 1
+        val bird = Bird(newEnergy,newWeight, this.maxAge, this.name)
+        println("${bird.name} was born. It has ${bird.energy} energy," +
+                "${bird.weight} weight and max age is ${bird.maxAge}.")
+        return bird
     }
 }

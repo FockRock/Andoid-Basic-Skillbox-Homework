@@ -2,7 +2,7 @@ package com.skillbox.classesandinheritance
 
 import kotlin.random.Random
 
-class Animal constructor(
+open class Animal constructor(
         energy: Int,
         weight: Int,
         maxAge: Int,

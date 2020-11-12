@@ -1,7 +1,7 @@
 package com.skillbox.classesandinheritance
 
 class Zoo {
-    var animalList: MutableList<Animal> = mutableListOf(
+    val animalList: MutableList<Animal> = mutableListOf(
             Bird(10,4,5,"bird1"),
             Bird(10,4,5,"bird2"),
             Bird(10,4,5,"bird3"),

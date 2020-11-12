@@ -3,7 +3,7 @@ package com.skillbox.classesandinheritance
 import kotlin.random.Random
 
 fun main() {
-    var zoo = Zoo()
+    val zoo = Zoo()
 
     print("Введите число: ")
     var n: Int = readLine()?.toIntOrNull()?: return

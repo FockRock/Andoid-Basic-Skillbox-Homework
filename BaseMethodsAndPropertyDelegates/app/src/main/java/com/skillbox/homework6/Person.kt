@@ -8,15 +8,17 @@ class Person (
     var weight: Int,
     var name: String
 ) {
-
     val pets = hashSetOf<Animal>()
 
-    fun buyPet() {
-        val randomEnergy = Random.nextInt(1..100)
-        val randomWeight = Random.nextInt(1..100)
-        val randomName = ("Pet №" + Random.nextInt(1..100).toString())
-        val animal = Animal(randomEnergy,randomWeight,randomName)
-        pets.add(animal)
+    fun buyPet(quantity: Int) {
+        var x = quantity
+        while (x > 0) {
+            val animal = Animal(Random.nextInt(1..100),
+                    Random.nextInt(1..100),
+                    "Pet №" + Random.nextInt(1..100).toString())
+            pets.add(animal)
+            x--
+        }
     }
 
     override fun equals(other: Any?): Boolean {

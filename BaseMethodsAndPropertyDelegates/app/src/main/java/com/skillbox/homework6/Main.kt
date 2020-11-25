@@ -1,5 +1,8 @@
 package com.skillbox.homework6
 
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
+
 fun main() {
     val person1 = Person(180, 80, "Nick")
     val person2 = Person(180, 80, "Nick")
@@ -17,7 +20,21 @@ fun main() {
         println(it.toString())
     }
 
-    person1.buyPet(4)
-    person3.buyPet(5)
-    person4.buyPet(2)
+    person1.buyPet()
+    person3.buyPet()
+    person4.buyPet()
+    person3.buyPet()
+    person1.buyPet()
+    person4.buyPet()
+    person3.buyPet()
+}
+
+class PrintPets <T> (
+        private val value: T
+        ) : ReadOnlyProperty <Person, T> {
+    override fun getValue(thisRef: Person, property: KProperty<*>): T{
+        println("${thisRef.name} buy a pet. He has $value")
+        return value
+    }
+
 }

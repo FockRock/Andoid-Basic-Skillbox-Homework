@@ -10,16 +10,13 @@ class Person (
 ) {
     val pets = hashSetOf<Animal>()
 
-    fun buyPet(quantity: Int) {
-        var x = quantity
-        while (x > 0) {
-            val animal = Animal(Random.nextInt(1..100),
-                    Random.nextInt(1..100),
-                    "Pet №" + Random.nextInt(1..100).toString())
-            pets.add(animal)
-            x--
+    fun buyPet() {
+        val animal = Animal(Random.nextInt(1..100),
+                Random.nextInt(1..100),
+                "Pet №" + Random.nextInt(1..100).toString())
+        pets.add(animal)
+        PrintPets("pet")
         }
-    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

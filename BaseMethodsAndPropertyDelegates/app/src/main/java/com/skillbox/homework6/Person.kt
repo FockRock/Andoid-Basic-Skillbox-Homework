@@ -8,14 +8,14 @@ class Person (
     var weight: Int,
     var name: String
 ) {
-    val pets = hashSetOf<Animal>()
+    val pets: HashSet<Animal> by PrintPets(hashSetOf())
 
     fun buyPet() {
         val animal = Animal(Random.nextInt(1..100),
                 Random.nextInt(1..100),
                 "Pet №" + Random.nextInt(1..100).toString())
         pets.add(animal)
-        PrintPets("pet")
+        PrintPets(pets)
         }
 
     override fun equals(other: Any?): Boolean {

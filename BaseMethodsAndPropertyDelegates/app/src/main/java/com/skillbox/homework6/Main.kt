@@ -29,10 +29,8 @@ fun main() {
     person3.buyPet()
 }
 
-class PrintPets <T> (
-        private val value: T
-        ) : ReadOnlyProperty <Person, T> {
-    override fun getValue(thisRef: Person, property: KProperty<*>): T{
+class PrintPets <T> (private val value: T) : ReadOnlyProperty <Person, T> {
+    override fun getValue(thisRef: Person, property: KProperty<*>): T {
         println("${thisRef.name} buy a pet. He has $value")
         return value
     }

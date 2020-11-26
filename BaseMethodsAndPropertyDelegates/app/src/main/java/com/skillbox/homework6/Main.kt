@@ -20,13 +20,9 @@ fun main() {
         println(it.toString())
     }
 
-    person1.buyPet()
-    person3.buyPet()
-    person4.buyPet()
-    person3.buyPet()
-    person1.buyPet()
-    person4.buyPet()
-    person3.buyPet()
+    person1.buyPet(4)
+    person3.buyPet(2)
+    person4.buyPet(3)
 }
 
 class PrintPets <T> (private val value: T) : ReadOnlyProperty <Person, T> {

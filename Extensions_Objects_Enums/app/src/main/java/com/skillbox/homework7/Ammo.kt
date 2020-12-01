@@ -9,7 +9,8 @@ enum class Ammo(
 ) {
     PISTOL(1,15,5),
     SHELLS(5,23,7),
-    EXPLOSIVE(10, 40, 10);
+    GRENADE(10, 40, 10);
+    
 
     fun takenDamage (damage: Int = this.damage,
                      criticalHitRate: Int = this.criticalHitRate,
@@ -18,7 +19,7 @@ enum class Ammo(
         else damage
     }
 
-    fun Int.toBoolean(): Boolean {
+    private fun Int.toBoolean(): Boolean {
         return this >= Random.nextInt(100)
     }
 }

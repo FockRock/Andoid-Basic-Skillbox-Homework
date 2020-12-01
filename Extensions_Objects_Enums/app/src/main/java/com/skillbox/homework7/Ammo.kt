@@ -14,7 +14,11 @@ enum class Ammo(
     fun takenDamage (damage: Int = this.damage,
                      criticalHitRate: Int = this.criticalHitRate,
                      criticalDamage: Int = this.criticalDamage): Int {
-        return if (criticalHitRate >= Random.nextInt(100)) damage*criticalDamage
+        return if (criticalHitRate.toBoolean()) damage*criticalDamage
         else damage
+    }
+
+    fun Int.toBoolean(): Boolean {
+        return this >= Random.nextInt(100)
     }
 }

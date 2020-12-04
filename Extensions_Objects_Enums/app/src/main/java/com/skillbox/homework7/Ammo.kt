@@ -7,7 +7,7 @@ enum class Ammo(
         private val criticalHitRate: Int,
         private val criticalDamage: Int
 ) {
-    PISTOL(1,15,5),
+    BULLET(1,15,5),
     SHELLS(5,23,7),
     GRENADE(10, 40, 10);
     

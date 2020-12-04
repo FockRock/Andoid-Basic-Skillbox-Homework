@@ -1,7 +1,5 @@
 package com.skillbox.homework7
 
-import java.util.ArrayList
-
 abstract class AbstractWeapon (
         private val magazineSize: Int,
         open val fireType: FireType
@@ -19,4 +17,8 @@ abstract class AbstractWeapon (
             x--
         }
     }
-}
+
+    fun getAmmo() {
+            ammoList.drop(fireType.queueLength)
+        }
+    }

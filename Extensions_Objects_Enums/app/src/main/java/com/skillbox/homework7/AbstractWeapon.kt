@@ -19,8 +19,8 @@ abstract class AbstractWeapon (
     }
 
     fun getAmmo() {
-            ammoList.drop(fireType.queueLength)
-        }
+        ammoList.drop(fireType.queueLength)
+    }
 }
 
 object Weapons {

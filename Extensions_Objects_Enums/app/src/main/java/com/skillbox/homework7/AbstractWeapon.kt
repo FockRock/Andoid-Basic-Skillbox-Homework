@@ -9,18 +9,18 @@ abstract class AbstractWeapon (
 
     abstract fun makeAmmo(): Ammo
 
-    fun reload() {
-        val ammoList = this.ammoList
-        var x = magazineSize
-        for (each in ammoList) {
-            makeAmmo()
-            x--
-        }
-    }
-
-    fun getAmmo() {
-        ammoList.drop(fireType.queueLength)
-    }
+//    fun reload() {
+//        val ammoList = this.ammoList
+//        var x = magazineSize
+//        for (each in ammoList) {
+//            makeAmmo()
+//            x--
+//        }
+//    }
+//
+//    fun getAmmo() {
+//        ammoList.drop(fireType.queueLength)
+//    }
 }
 
 object Weapons {

@@ -2,9 +2,9 @@ package com.skillbox.homework7
 
 abstract class AbctractWarrior(
         maxHP: Int,
+        override val chanceBeingHit: Int,
         accuracy: Int,
         weapon: AbstractWeapon,
-        override val chanceBeingHit: Int,
         var hp: Int = maxHP
 ): Warrior {
 

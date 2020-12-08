@@ -4,7 +4,7 @@ abstract class AbstractWeapon (
         private val magazineSize: Int,
         open val fireType: FireType
 ){
-    private val ammoList = arrayOf<Ammo>()
+    val ammoList = arrayOf<Ammo>()
     val ammoAvailability: Boolean = ammoList.isNotEmpty()
 
     abstract fun makeAmmo(): Ammo
@@ -17,8 +17,8 @@ abstract class AbstractWeapon (
         return cartridge
     }
 
-    fun getAmmo() {
-        ammoList.drop(fireType.queueLength)
+    fun getAmmo(): List<Ammo> {
+        return ammoList.drop(fireType.queueLength)
     }
 }
 

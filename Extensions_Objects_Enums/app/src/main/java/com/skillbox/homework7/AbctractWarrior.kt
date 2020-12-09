@@ -1,9 +1,11 @@
 package com.skillbox.homework7
 
+import kotlin.random.Random
+
 abstract class AbctractWarrior(
         maxHP: Int,
         override val chanceBeingHit: Int,
-        val accuracy: Int,
+        private val accuracy: Int,
         private val weapon: AbstractWeapon,
         var hp: Int = maxHP
 ): Warrior {
@@ -11,10 +13,10 @@ abstract class AbctractWarrior(
     override fun attack(enemy: Warrior) {
         if (!weapon.ammoAvailability) {
             weapon.reload()
-        } else for (each in weapon.ammoList) {
+        } else for (i in weapon.ammoList) {
             weapon.getAmmo()
-            if (accuracy >= enemy.chanceBeingHit) {
-                takeDamage(100)
+            if ((accuracy * Random.nextInt(100)) >= (enemy.chanceBeingHit * Random.nextInt(100))) {
+                takeDamage(weapon.makeAmmo().takenDamage())
             }
         }
     }

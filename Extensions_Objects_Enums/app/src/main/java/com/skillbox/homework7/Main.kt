@@ -13,4 +13,6 @@ fun main() {
     val general = General(300,15, 90,Weapons.createGrenadeLauncher())
 
     general.attack(soldier)
+    general.attack(soldier)
+
 }

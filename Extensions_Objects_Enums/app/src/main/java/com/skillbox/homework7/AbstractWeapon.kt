@@ -4,17 +4,17 @@ abstract class AbstractWeapon (
         private val magazineSize: Int,
         open val fireType: FireType
 ){
-    val ammoList = arrayOf<Ammo>()
-    val ammoAvailability: Boolean = ammoList.isNotEmpty()
+    var ammoList = arrayListOf<Ammo>()
+    var ammoAvailability: Boolean = ammoList.isNotEmpty()
 
     abstract fun makeAmmo(): Ammo
 
     fun reload(): ArrayList<Ammo> {
-        val cartridge = arrayListOf<Ammo>()
-        for (i in 0..magazineSize){
-            cartridge.add(makeAmmo())
+        for (i in 0..magazineSize) {
+            ammoList.add(makeAmmo())
         }
-        return cartridge
+        ammoAvailability = true
+        return ammoList
     }
 
     fun getAmmo(): List<Ammo> {

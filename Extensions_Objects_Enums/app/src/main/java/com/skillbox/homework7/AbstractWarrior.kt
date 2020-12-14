@@ -15,18 +15,20 @@ abstract class AbstractWarrior(
         if (!weapon.ammoAvailability) {
             println("Weapon reloaded.")
             weapon.reload()
-        } else for (i in weapon.ammoList) {
+        } else {
             weapon.getAmmo()
             if ((accuracy * Random.nextInt(100)) >= (enemy.chanceBeingHit * Random.nextInt(100))) {
-                takeDamage(weapon.makeAmmo().takenDamage())
-                println("$enemy take ${takeDamage(weapon.makeAmmo().takenDamage())} damage!")
+                var enemyHP = enemy.takeDamage(weapon.makeAmmo().takenDamage())
+                if (enemyHP == 0) {
+                    println("Enemy is dead.")
+                }
             }
         }
     }
 
     override fun takeDamage(damage: Int): Int {
         println("Was hit $damage damage!")
-        return this.hp - damage
+        return hp - damage
     }
 }
 

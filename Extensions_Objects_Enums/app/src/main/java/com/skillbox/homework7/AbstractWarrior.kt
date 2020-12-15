@@ -12,7 +12,7 @@ abstract class AbstractWarrior(
 ): Warrior {
 
     override fun attack(enemy: Warrior) {
-        if (!weapon.ammoAvailability) {
+        if (weapon.ammoList.isEmpty()) {
             println("Weapon reloaded.")
             weapon.reload()
         } else {

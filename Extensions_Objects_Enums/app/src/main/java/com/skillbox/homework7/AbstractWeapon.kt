@@ -10,21 +10,27 @@ abstract class AbstractWeapon (
     abstract fun makeAmmo(): Ammo
 
     fun reload(): ArrayList<Ammo> {
-        for (i in 0..magazineSize) {
+        for (i in 1..magazineSize) {
             ammoList.add(makeAmmo())
         }
         ammoAvailability = true
         return ammoList
     }
 
-    fun getAmmo(): List<Ammo> {
-        return ammoList.drop(fireType.queueLength)
+    fun getAmmo(): ArrayList<Ammo> {
+        val ammoForShot = arrayListOf<Ammo>()
+        if (this.ammoList.isNotEmpty()) {
+        for (i in 1..fireType.queueLength)
+            ammoForShot.add(makeAmmo())
+        println("$ammoForShot in the gun!")
+        this.ammoList.removeAll(ammoForShot)
+        } else reload()
+        return ammoForShot
     }
 }
 
 object Weapons {
     fun createPistol(): AbstractWeapon {
-        println("Pistol created.")
         return object : AbstractWeapon(8, FireType.SingleShot){
             override fun makeAmmo(): Ammo {
                 return Ammo.BULLET
@@ -32,7 +38,6 @@ object Weapons {
         }
     }
     fun createUzi(): AbstractWeapon {
-        println("Uzi created.")
         return object : AbstractWeapon(30, FireType.BurstFire(5)){
             override fun makeAmmo(): Ammo {
                 return Ammo.BULLET
@@ -40,7 +45,6 @@ object Weapons {
         }
     }
     fun createShotgun(): AbstractWeapon {
-        println("Shotgun created.")
         return object : AbstractWeapon(12, FireType.SingleShot){
             override fun makeAmmo(): Ammo {
                 return Ammo.SHELLS
@@ -48,8 +52,7 @@ object Weapons {
         }
     }
     fun createGrenadeLauncher(): AbstractWeapon {
-        println("Grenade Launcher created.")
-        return object : AbstractWeapon(5, FireType.SingleShot){
+        return object : AbstractWeapon(1, FireType.SingleShot){
             override fun makeAmmo(): Ammo {
                 return Ammo.GRENADE
             }

@@ -13,4 +13,7 @@ fun main() {
     general.attack(soldier)
     general.attack(soldier)
     general.attack(soldier)
+    general.attack(soldier)
+    general.attack(soldier)
+    general.attack(soldier)
 }

@@ -8,27 +8,35 @@ abstract class AbstractWarrior(
         private val accuracy: Int,
         private val weapon: AbstractWeapon,
         var hp: Int = maxHP,
-        override val isKilled: Boolean = false
+        override var isKilled: Boolean = false
 ): Warrior {
+
 
     override fun attack(enemy: Warrior) {
         if (weapon.ammoList.isEmpty()) {
             println("Weapon reloaded.")
             weapon.reload()
         } else {
-            weapon.getAmmo()
-            if ((accuracy * Random.nextInt(100)) >= (enemy.chanceBeingHit * Random.nextInt(100))) {
-                var enemyHP = enemy.takeDamage(weapon.makeAmmo().takenDamage())
-                if (enemyHP == 0) {
-                    println("Enemy is dead.")
-                }
+            val ammoInGun = weapon.getAmmo()
+            var totalDamage = 0
+            for (each in ammoInGun) {
+                if ((accuracy * Random.nextInt(100)) >= (enemy.chanceBeingHit * Random.nextInt(100)))
+                    totalDamage += weapon.makeAmmo().takenDamage()
+                    println("$totalDamage")
             }
+            enemy.takeDamage(totalDamage)
         }
     }
 
     override fun takeDamage(damage: Int): Int {
         println("Was hit $damage damage!")
-        return hp - damage
+        println("He has ${this.hp - damage} HP!")
+        this.hp -= damage
+        if (this.hp <= 0) {
+            isKilled = true
+            println("Soldier was killed!")
+        }
+        return this.hp
     }
 }
 

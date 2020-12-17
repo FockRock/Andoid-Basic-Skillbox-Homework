@@ -41,25 +41,25 @@ abstract class AbstractWarrior(
 }
 
 class General(
-        maxHP: Int,
-        chanceBeingHit: Int,
-        accuracy: Int,
-        weapon: AbstractWeapon
+        maxHP: Int = 300,
+        chanceBeingHit: Int = 15,
+        accuracy: Int = 90,
+        weapon: AbstractWeapon = Weapons.createGrenadeLauncher()
 ): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
 }
 
 class Captain(
-        maxHP: Int,
-        chanceBeingHit: Int,
-        accuracy: Int,
-        weapon: AbstractWeapon
+        maxHP: Int = 200,
+        chanceBeingHit: Int = 10,
+        accuracy: Int = 80,
+        weapon: AbstractWeapon = Weapons.createShotgun()
 ): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
 }
 
 class Soldier(
-        maxHP: Int,
-        chanceBeingHit: Int,
-        accuracy: Int,
-        weapon: AbstractWeapon
+        maxHP: Int = 100,
+        chanceBeingHit: Int = 5,
+        accuracy: Int = 70,
+        weapon: AbstractWeapon = Weapons.createPistol()
 ): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
 }

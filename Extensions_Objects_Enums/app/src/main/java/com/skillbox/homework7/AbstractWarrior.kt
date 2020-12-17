@@ -13,28 +13,31 @@ abstract class AbstractWarrior(
 
 
     override fun attack(enemy: Warrior) {
-        if (weapon.ammoList.isEmpty()) {
-            println("Weapon reloaded.")
-            weapon.reload()
-        } else {
-            val ammoInGun = weapon.getAmmo()
-            var totalDamage = 0
-            for (each in ammoInGun) {
-                if ((accuracy * Random.nextInt(100)) >= (enemy.chanceBeingHit * Random.nextInt(100)))
-                    totalDamage += weapon.makeAmmo().takenDamage()
-                    println("$totalDamage")
-            }
-            enemy.takeDamage(totalDamage)
-        }
+            if (!enemy.isKilled) {
+                if (weapon.ammoList.isEmpty()) {
+                    println("Weapon reloaded.")
+                    weapon.reload()
+                } else {
+                    val ammoInGun = weapon.getAmmo()
+                    var totalDamage = 0
+                    for (each in ammoInGun) {
+                        if ((accuracy * Random.nextInt(100)) >= (enemy.chanceBeingHit * Random.nextInt(100)))
+                            totalDamage += weapon.makeAmmo().takenDamage()
+                    }
+                    enemy.takeDamage(totalDamage)
+                }
+            } else return
     }
 
     override fun takeDamage(damage: Int): Int {
-        println("Was hit $damage damage!")
-        println("He has ${this.hp - damage} HP!")
-        this.hp -= damage
-        if (this.hp <= 0) {
+        if (this.hp > 0) {
+            println("Was hit $damage damage!")
+            println("He has ${this.hp - damage} HP!")
+            this.hp -= damage
+        } else {
             isKilled = true
             println("Soldier was killed!")
+            this.hp = 0
         }
         return this.hp
     }
@@ -46,6 +49,10 @@ class General(
         accuracy: Int = 90,
         weapon: AbstractWeapon = Weapons.createGrenadeLauncher()
 ): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
+    override var isKilled: Boolean = true
+        get() {
+            return hp <= 0
+        }
 }
 
 class Captain(

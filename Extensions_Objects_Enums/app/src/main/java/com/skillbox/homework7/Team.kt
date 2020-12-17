@@ -3,8 +3,9 @@ package com.skillbox.homework7
 import kotlin.random.Random
 
 open class Team (
-        private val numberOfWarriors: Int = readLine()!!.toInt()
+        private var numberOfWarriors: Int = readLine()!!.toInt()
         ){
+
     var warriorList = mutableListOf<Warrior>()                                                      //Создаем список войнов
 
     fun getArmy(num: Int = numberOfWarriors): MutableList<Warrior> {                        //Ф-ия случайного получения война
@@ -26,7 +27,7 @@ open class Team (
             }
             a--
         }
-        println("Команда собрана!")
+        println("Team was Created!")
         return warriorList
     }
 }

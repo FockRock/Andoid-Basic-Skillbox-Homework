@@ -6,9 +6,9 @@ open class Team (
         private var numberOfWarriors: Int = readLine()!!.toInt()
         ){
 
-    var warriorList = mutableListOf<Warrior>()                                                      //Создаем список войнов
+    var warriorList = mutableListOf<AbstractWarrior>()                                                      //Создаем список войнов
 
-    fun getArmy(num: Int = numberOfWarriors): MutableList<Warrior> {                        //Ф-ия случайного получения война
+    fun getArmy(num: Int = numberOfWarriors): MutableList<AbstractWarrior> {                        //Ф-ия случайного получения война
         var a = num
         while (a > 0) {
             when {

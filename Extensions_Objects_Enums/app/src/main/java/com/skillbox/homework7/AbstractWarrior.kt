@@ -8,7 +8,7 @@ abstract class AbstractWarrior(
         private val accuracy: Int,
         private val weapon: AbstractWeapon,
         var hp: Int = maxHP,
-        override var isKilled: Boolean = false
+        override var isKilled: Boolean = hp <= 0
 ): Warrior {
 
 
@@ -48,11 +48,7 @@ class General(
         chanceBeingHit: Int = 15,
         accuracy: Int = 90,
         weapon: AbstractWeapon = Weapons.createGrenadeLauncher()
-): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
-    override var isKilled: Boolean = true
-        get() {
-            return hp <= 0
-        }
+): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon,  isKilled = false) {
 }
 
 class Captain(
@@ -60,7 +56,7 @@ class Captain(
         chanceBeingHit: Int = 10,
         accuracy: Int = 80,
         weapon: AbstractWeapon = Weapons.createShotgun()
-): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
+): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon, isKilled = false) {
 }
 
 class Soldier(
@@ -68,5 +64,5 @@ class Soldier(
         chanceBeingHit: Int = 5,
         accuracy: Int = 70,
         weapon: AbstractWeapon = Weapons.createPistol()
-): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
+): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon,  isKilled = false) {
 }

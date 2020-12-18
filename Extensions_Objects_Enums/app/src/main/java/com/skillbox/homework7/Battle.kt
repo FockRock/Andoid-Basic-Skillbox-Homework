@@ -4,14 +4,14 @@ import java.util.function.Predicate
 import kotlin.random.Random
 
 class Battle(
-        var team1: Team,
-        var team2: Team,
-        var result: Boolean = false
+        private var team1: Team,
+        private var team2: Team,
+        private var result: Boolean = false
 ) : Team(0){
 
 
 
-    private fun battleProgress(t1: Int, t2: Int): BattleState {                                                             //Состояние битвы
+    private fun battleProgress(t1: Int, t2: Int): BattleState {                                     //Состояние битвы
         val progress: BattleState
 
         if (t1 != 0 || t2 != 0) {
@@ -35,29 +35,27 @@ class Battle(
         return progress
     }
 
-    fun battleIteration() {
+    fun battleIteration() {                                                                         //Итерация битвы
         team1.getArmy()
         team2.getArmy()
 
-        team1.warriorList.shuffle()
-        team2.warriorList.shuffle()
+        while (!result) {
 
-        val team1Live = team1.warriorList.filter { !it.isKilled }
-        val team2Live = team2.warriorList.filter { !it.isKilled }
+            team1.warriorList.shuffle()
+            team2.warriorList.shuffle()
 
-        var a = 30
+            val team1Live = team1.warriorList.filter { !it.isKilled }
+            val team2Live = team2.warriorList.filter { !it.isKilled }
 
-        while (a > 0) {
-            for (i in team1Live) {
-                i.attack(team2Live[Random.nextInt(0, until = team2Live.size)])
+            if (team1Live.isNotEmpty() || team2Live.isNotEmpty()) {
+                for (i in team1Live) {
+                    i.attack(team2Live[Random.nextInt(until = team2Live.size)])
                 }
-
-            for (i in team2Live) {
-                i.attack(team1Live[Random.nextInt(0, until = team1Live.size)])
+                for (i in team2Live) {
+                    i.attack(team1Live[Random.nextInt(until = team1Live.size)])
+                }
             }
-            println(team1Live)
             battleProgress(team1Live.size, team2Live.size)
-            a--
         }
     }
 }

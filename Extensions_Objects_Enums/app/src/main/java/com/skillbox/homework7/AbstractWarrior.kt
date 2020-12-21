@@ -37,7 +37,6 @@ abstract class AbstractWarrior(
         } else {
             isKilled = true
             println("Soldier was killed!")
-            this.hp = 0
         }
         return this.hp
     }
@@ -48,7 +47,7 @@ class General(
         chanceBeingHit: Int = 15,
         accuracy: Int = 90,
         weapon: AbstractWeapon = Weapons.createGrenadeLauncher()
-): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon,  isKilled = false) {
+): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
 }
 
 class Captain(
@@ -56,7 +55,7 @@ class Captain(
         chanceBeingHit: Int = 10,
         accuracy: Int = 80,
         weapon: AbstractWeapon = Weapons.createShotgun()
-): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon, isKilled = false) {
+): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
 }
 
 class Soldier(
@@ -64,5 +63,5 @@ class Soldier(
         chanceBeingHit: Int = 5,
         accuracy: Int = 70,
         weapon: AbstractWeapon = Weapons.createPistol()
-): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon,  isKilled = false) {
+): AbstractWarrior(maxHP, chanceBeingHit, accuracy,weapon) {
 }

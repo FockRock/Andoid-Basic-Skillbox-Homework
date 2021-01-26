@@ -2,15 +2,18 @@ package com.skillbox.homework84
 
 fun main() {
 
-    val list: List<Int> = listOf(1,2,4,5,6)
-    println(oddList(list))
+    val newList: GenericClass<Double> =
+
+    println(oddList())
 }
 
-class GenericList<T: Number>()
+class GenericClass<out T: Number>() {
 
-fun oddList(list: GenericList<Number>): List<Number> {
-    var newList: List<Number>
+}
 
-    for (t in list)
-        if (t % 2 == 0)
+fun oddList(newList: GenericClass<Number>): List<Int> {
+    val oddList: List<Int> = listOf()
+
+
+    return oddList
 }

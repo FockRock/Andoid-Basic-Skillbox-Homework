@@ -1,5 +1,7 @@
 package com.skillbox.homework84
 
+import kotlin.random.Random
+
 sealed class Result<out T, R> {
 
     data class Success<T, R>(
@@ -10,14 +12,14 @@ sealed class Result<out T, R> {
             val b: R
     ): Result<T, R>()
 
-    object R1: Result<Int, String>()
-
-    fun result(): R1 {
+    fun result(): Result<Int, String> {
 
         val a = Success<Int, String>(34)
         val b = Error<Int, String>("generic")
 
-        val r: R1
+        val r: Result<Int, String>
+        val choice = Random.nextBoolean()
+        r = if (choice) a else b
 
         return r
     }

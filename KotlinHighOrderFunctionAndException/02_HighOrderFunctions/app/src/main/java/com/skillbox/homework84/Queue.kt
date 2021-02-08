@@ -2,17 +2,19 @@ package com.skillbox.homework84
 
 fun main() {
 
-    val newQueue = Queue(mutableListOf("Nick", "Max", "Alex", "Dan", "Stan"))
+    val newQueue = Queue<String>()
+    newQueue.queueList = mutableListOf("Nick", "Max", "Alex")
 
-    val filtered = {q: Queue<String> -> Queue<String>::filter}
+    val filteredQueue = newQueue.queueList.filter { it.length == 4 }
 
-    println(filtered(newQueue))
-    println(newQueue.filter())
+    println(filteredQueue)
 }
 
-class Queue<T> (private val queueList: MutableList<T>) {
+class Queue <T> () {
 
-    fun enqueue(item: T) {
+    var queueList: MutableList<T> = mutableListOf()
+
+    private fun enqueue(item: T) {
         queueList.add(item)
         println(queueList)
     }
@@ -27,5 +29,12 @@ class Queue<T> (private val queueList: MutableList<T>) {
         return a
     }
 
-    fun filter() = queueList.filter { it.toString().length == 4 }
+    fun filter (condition: (T) -> Boolean): Queue<T> {
+        val newQueue: Queue<T> = Queue()
+        for (e in queueList) {
+            if (condition(e))
+                newQueue.enqueue(e)
+        }
+        return newQueue
+    }
 }

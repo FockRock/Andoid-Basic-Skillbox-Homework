@@ -6,8 +6,6 @@ fun main() {
     newQueue.queueList = mutableListOf("Nick", "Max", "Alex")
 
     val filteredQueue = newQueue.queueList.filter { it.length == 4 }
-
-    println(filteredQueue)
 }
 
 class Queue <T> () {

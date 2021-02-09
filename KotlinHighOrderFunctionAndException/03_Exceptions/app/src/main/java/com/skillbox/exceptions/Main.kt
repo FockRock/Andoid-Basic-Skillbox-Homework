@@ -7,4 +7,4 @@ fun main() {
 class Wheel {
     var pressure: Double = 0.0
         private set
-}
+} 

@@ -18,9 +18,54 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [appName: "Debug"]
+            applicationIdSuffix ".debug"
+        }
+
+        qa {
+            initWith debug
+            manifestPlaceholders = [appName: "QA"]
+            applicationIdSuffix ".qa"
+        }
+
         release {
+            manifestPlaceholders = [appName: "Release"]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".release"
+        }
+
+
+        flavorDimensions "type", "brand"
+
+        productFlavors {
+
+            demo {
+                dimension "type"
+                applicationIdSuffix ".demo"
+                versionNameSuffix "Demo"
+            }
+
+            full {
+                dimension "type"
+                applicationIdSuffix ".full"
+                versionNameSuffix "Full"
+            }
+
+            sony {
+                dimension "brand"
+                applicationIdSuffix ".sony"
+                versionNameSuffix "Sony"
+            }
+
+            microsoft {
+                minSdkVersion 22
+                dimension "brand"
+                applicationIdSuffix ".microsoft"
+                versionNameSuffix "Microsoft"
+            }
         }
     }
     compileOptions {

@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">LoginScreen</string>
     <string name="log_in">Log In</string>
-    <string name="log_in">Log In</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="license">Лицензионное соглашение</string>
+    <string name="email_enter">Email:</string>
+    <string name="password_enter">Password:</string>
 </resources>

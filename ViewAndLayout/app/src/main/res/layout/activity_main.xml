@@ -30,6 +30,7 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="30dp"
         android:autofillHints=""
+        android:text=""
         android:hint="@string/enter_email"
         android:inputType="textEmailAddress" />
 
@@ -49,6 +50,7 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="30dp"
         android:autofillHints=""
+        android:text=""
         android:hint="@string/enter_password"
         android:inputType="textPassword" />
 

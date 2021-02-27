@@ -23,24 +23,46 @@ class MainActivity : AppCompatActivity() {
             .load("https://248006.selcdn.ru/main/iblock/def/def82b733a444368cf333916fe4066bd/bb84628188b5382ecf36329e7410e5cc.png")
             .into(image)
 
-        loginButton.isEnabled =
-            !(emailInput.text.toString() == "" && passwordInput.text.toString() == "" && !license.isChecked)
 
-        passwordInput.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
-            override fun afterTextChanged(s: Editable?) {
-                loginButton.isEnabled = s?.isNotEmpty() ?: false
-            }
 
-        })
+
+//        passwordInput.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//            override fun afterTextChanged(s: Editable?) {
+//                loginButton.isEnabled = s?.isNotEmpty() ?: false
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+//        })
+//
+//
+//
+//        emailInput.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//            override fun afterTextChanged(s: Editable?) {
+//                loginButton.isEnabled = s?.isNotEmpty() ?: false
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+//        })
+
+        passwordInput.addTextChangedListener(textWatcher)
+        emailInput.addTextChangedListener(textWatcher)
+
+
+
+
+
+
+
+
 
         loginButton.setOnClickListener {
             val progressBar = ProgressBar(this).apply {
                 LinearLayout.LayoutParams(
-                    50,50
+                    50, 50
                 ).apply { gravity = Gravity.CENTER }
                 progressStart()
             }
@@ -48,6 +70,23 @@ class MainActivity : AppCompatActivity() {
             progressStop(progressBar)
         }
     }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            var t1 = passwordInput.text.toString().length
+            var t2 = emailInput.text.toString().length
+
+            if (t1 > 0 && t2 > 0)loginButton.isEnabled
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
+
+    }
+
+
+
 
     private fun progressStart() {
         loginButton.isEnabled = false
@@ -58,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun progressStop(i: View) {
         Handler().postDelayed({
-            i.visibility = View.GONE
+            container.removeView(i)
             loginButton.isEnabled = true
             emailInput.isEnabled = true
             passwordInput.isEnabled = true

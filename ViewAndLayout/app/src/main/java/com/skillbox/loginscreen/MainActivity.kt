@@ -23,41 +23,12 @@ class MainActivity : AppCompatActivity() {
             .load("https://248006.selcdn.ru/main/iblock/def/def82b733a444368cf333916fe4066bd/bb84628188b5382ecf36329e7410e5cc.png")
             .into(image)
 
-
-
-
-
-
-//        passwordInput.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//            override fun afterTextChanged(s: Editable?) {
-//                loginButton.isEnabled = s?.isNotEmpty() ?: false
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-//        })
-//
-//
-//
-//        emailInput.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//            override fun afterTextChanged(s: Editable?) {
-//                loginButton.isEnabled = s?.isNotEmpty() ?: false
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-//        })
-
         passwordInput.addTextChangedListener(textWatcher)
         emailInput.addTextChangedListener(textWatcher)
-
-
-
-
-
-
-
-
+        license.setOnCheckedChangeListener { buttonView, isChecked ->
+            loginButton.isEnabled = isChecked && emailInput.text.toString().isNotEmpty() &&
+                    passwordInput.text.toString().isNotEmpty()
+        }
 
         loginButton.setOnClickListener {
             val progressBar = ProgressBar(this).apply {
@@ -71,22 +42,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val textWatcher: TextWatcher = object : TextWatcher {
+    private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            var t1 = passwordInput.text.toString().length
-            var t2 = emailInput.text.toString().length
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
-            if (t1 > 0 && t2 > 0)loginButton.isEnabled
+        override fun afterTextChanged(s: Editable?) {
+            loginButton.isEnabled = emailInput.text.toString().isNotEmpty() &&
+                    passwordInput.text.toString().isNotEmpty() && license.isChecked
         }
 
-        override fun afterTextChanged(s: Editable?) {}
-
     }
-
-
-
 
     private fun progressStart() {
         loginButton.isEnabled = false

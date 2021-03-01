@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -26,11 +25,10 @@ class MainActivity : AppCompatActivity() {
         passwordInput.addTextChangedListener(textWatcher)
         emailInput.addTextChangedListener(textWatcher)
         license.setOnCheckedChangeListener { buttonView, isChecked ->
-            loginButton.isEnabled = isChecked && emailInput.text.toString().isNotEmpty() &&
-                    passwordInput.text.toString().isNotEmpty()
+            loginButton.isEnabled = checking()
         }
 
-        loginButton.setOnClickListener {
+        loginButton.setOnClickListener {                                                            //После нажатия на кнопку создается прогресс-бар
             val progressBar = ProgressBar(this).apply {
                 LinearLayout.LayoutParams(
                     50, 50
@@ -42,26 +40,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val textWatcher = object : TextWatcher {
+    private val textWatcher = object : TextWatcher {                                                //Нужен для проверки заполненности текста
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         override fun afterTextChanged(s: Editable?) {
-            loginButton.isEnabled = emailInput.text.toString().isNotEmpty() &&
-                    passwordInput.text.toString().isNotEmpty() && license.isChecked
+            loginButton.isEnabled = checking()
         }
 
     }
 
-    private fun progressStart() {
+    private fun progressStart() {                                                                   //Блокирует все кнопки на момент работы прогресс-бара
         loginButton.isEnabled = false
         emailInput.isEnabled = false
         passwordInput.isEnabled = false
         license.isEnabled = false
     }
 
-    private fun progressStop(i: View) {
+    private fun progressStop(i: View) {                                                             //Удаляет прогресс-бар и включает кнопки
         Handler().postDelayed({
             container.removeView(i)
             loginButton.isEnabled = true
@@ -70,5 +67,10 @@ class MainActivity : AppCompatActivity() {
             license.isEnabled = true
             Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show()
         }, 2000)
+    }
+
+    private fun checking(): Boolean {                                                               //Метод проверки
+        return emailInput.text.toString().isNotEmpty() &&
+                passwordInput.text.toString().isNotEmpty() && license.isChecked
     }
 }

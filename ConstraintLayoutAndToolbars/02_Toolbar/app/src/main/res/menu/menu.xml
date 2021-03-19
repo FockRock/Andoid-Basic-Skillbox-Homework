@@ -2,23 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
         android:id="@+id/member1"
-        android:icon="@drawable/ic_dead"
+        android:icon="@drawable/ic_person"
         android:title="@string/member1"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/member2"
-        android:icon="@drawable/ic_living"
+        android:icon="@drawable/ic_person"
         android:title="@string/member2"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/member3"
-        android:icon="@drawable/ic_dead"
+        android:icon="@drawable/ic_person"
         android:title="@string/member3"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/member4"
-        android:icon="@drawable/ic_living"
+        android:icon="@drawable/ic_person"
         android:title="@string/member4"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 </menu>

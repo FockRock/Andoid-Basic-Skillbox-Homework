@@ -13,7 +13,7 @@
         android:layout_marginTop="5dp"
         android:text="Email"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/emailInput"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
@@ -23,11 +23,11 @@
         android:layout_height="wrap_content"
         android:text="Password"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/passwordInput"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginButton"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
@@ -36,37 +36,37 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/licence"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintStart_toEndOf="@+id/license"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
 
     <CheckBox
-        android:id="@+id/licence"
+        android:id="@+id/license"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:text="License"
         android:textSize="8sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/login"
-        app:layout_constraintEnd_toStartOf="@+id/login"
+        app:layout_constraintBaseline_toBaselineOf="@+id/loginButton"
+        app:layout_constraintEnd_toStartOf="@+id/loginButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/emailInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter Email"
         android:inputType="textEmailAddress"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/passwordInput"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -74,11 +74,11 @@
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
 
     <ImageView
         android:id="@+id/logo"
@@ -133,5 +133,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+    <Button
+        android:id="@+id/anr"
+        android:layout_width="69dp"
+        android:layout_height="32dp"
+        android:textSize="8dp"
+        android:text="@string/anr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

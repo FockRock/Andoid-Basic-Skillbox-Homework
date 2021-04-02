@@ -1,36 +1,39 @@
 package com.skillbox.constraintlogin
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val tag = "Main Activity"
+    private val tag = "Main Activity"
+    var text: ErrorState = ErrorState("")
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (savedInstanceState != null) {
+            text = savedInstanceState.getParcelable(KEY_COUNTER) ?: error("Unexpected state!")
+            errorText.text = text.error
+        }
+
         Log.d(tag, "onCreate")
 
         Glide.with(this)
-            .load("https://248006.selcdn.ru/main/iblock/def/def82b733a444368cf333916fe4066bd/bb84628188b5382ecf36329e7410e5cc.png")
-            .into(logo)
+                .load("https://248006.selcdn.ru/main/iblock/def/def82b733a444368cf333916fe4066bd/bb84628188b5382ecf36329e7410e5cc.png")
+                .into(logo)
 
         group.referencedIds.forEach {
             findViewById<View>(it).setOnClickListener {
-                Toast.makeText(this,"Enter it!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Enter it!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -38,58 +41,40 @@ class MainActivity : AppCompatActivity() {
             Thread.sleep(15000)
         }
 
-//        passwordInput.addTextChangedListener(textWatcher)
-//        emailInput.addTextChangedListener(textWatcher)
-//        license.setOnCheckedChangeListener { buttonView, isChecked ->
-//            loginButton.isEnabled = checking()
-//        }
-//
-//        loginButton.setOnClickListener {                                                            //После нажатия на кнопку создается прогресс-бар
-//            val progressBar = ProgressBar(this).apply {
-//                LinearLayout.LayoutParams(
-//                        50, 50
-//                ).apply { gravity = Gravity.CENTER }
-//                progressStart()
-//            }
-//            container.addView(progressBar)
-//            progressStop(progressBar)
-//        }
 
+        loginButton.setOnClickListener {
+            loginButton.isEnabled = false
+            emailInput.isEnabled = false
+            passwordInput.isEnabled = false
+            license.isEnabled = false
+            Toast.makeText(this, "Information checking...", Toast.LENGTH_SHORT).show()
+
+            if (checking()) {
+                Handler().postDelayed({
+                    loginButton.isEnabled = true
+                    emailInput.isEnabled = true
+                    passwordInput.isEnabled = true
+                    license.isEnabled = true
+                    Toast.makeText(this, "Login Success!", Toast.LENGTH_SHORT).show()
+                }, 2000)
+            } else {
+                Handler().postDelayed({
+                    loginButton.isEnabled = true
+                    emailInput.isEnabled = true
+                    passwordInput.isEnabled = true
+                    license.isEnabled = true
+                    errorText.text = "Validate incomplete!"
+                    text.changeText(errorText.text.toString())
+                }, 2000)
+            }
+        }
     }
 
-//    private val textWatcher = object : TextWatcher {                                                //Нужен для проверки заполненности текста
-//        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//
-//        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-//
-//        override fun afterTextChanged(s: Editable?) {
-//            loginButton.isEnabled = checking()
-//        }
-//
-//    }
-//
-//    private fun progressStart() {                                                                   //Блокирует все кнопки на момент работы прогресс-бара
-//        loginButton.isEnabled = false
-//        emailInput.isEnabled = false
-//        passwordInput.isEnabled = false
-//        license.isEnabled = false
-//    }
-//
-//    private fun progressStop(i: View) {                                                             //Удаляет прогресс-бар и включает кнопки
-//        Handler().postDelayed({
-//            container.removeView(i)
-//            loginButton.isEnabled = true
-//            emailInput.isEnabled = true
-//            passwordInput.isEnabled = true
-//            license.isEnabled = true
-//            Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show()
-//        }, 2000)
-//    }
-//
-//    private fun checking(): Boolean {                                                               //Метод проверки
-//        return emailInput.text.toString().isNotEmpty() &&
-//                passwordInput.text.toString().isNotEmpty() && license.isChecked
-//    }
+    private fun checking(): Boolean {
+        return emailInput.text.toString().isNotEmpty()
+                && passwordInput.text.toString().isNotEmpty()
+                && license.isChecked
+    }
 
     override fun onStart() {
         super.onStart()
@@ -99,6 +84,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.i(tag, "onResume")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(KEY_COUNTER, text)
     }
 
     override fun onPause() {
@@ -113,5 +103,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    companion object {
+        private const val KEY_COUNTER = "counter"
     }
 }

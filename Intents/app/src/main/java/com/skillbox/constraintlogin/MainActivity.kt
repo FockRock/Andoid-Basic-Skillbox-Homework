@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checking(): Boolean {
-        return emailInput.text.toString().isNotEmpty()
+        return Patterns.EMAIL_ADDRESS.matcher(emailInput.text.toString()).matches()
                 && passwordInput.text.toString().isNotEmpty()
                 && license.isChecked
     }
